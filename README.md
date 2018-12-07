@@ -1,6 +1,6 @@
-# Article Knowledgebase Application
+# Web Application
 
-This is a knowledgebase app used in the "Node.js & Express From Scratch" Youtube series.
+This is an app used in the "Node.js & Express From Scratch" Youtube series by Brad Traversy.
 
 ## Technologies
 * Node.js
