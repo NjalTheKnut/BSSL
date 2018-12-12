@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
 
-var uri = 'mongodb://localhost:27017/nodekb';
+var uri = 'mongodb://172.31.95.255:27017/nodekb';
 mongoose.createConnection(uri, {
   server: {
     poolSize: 4
