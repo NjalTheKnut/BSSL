@@ -113,6 +113,12 @@ app.use('/articles', articles);
 app.use('/users', users);
 
 // Start Server
-app.listen(3000, function () {
+/* app.listen(3000, function () {
   console.log('Server started on port 3000...');
+});
+ */
+var port = process.env.PORT || 3000;
+
+var server = app.listen(port, function () {
+    console.log('Server running at http://127.0.0.1:' + port + '/');
 });
