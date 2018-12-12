@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node app"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NjalTheKnut/bssl-app.git"
+  },
   "author": "Brad Traversy",
   "license": "ISC",
   "dependencies": {
