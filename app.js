@@ -117,6 +117,12 @@ app.listen(3000, function () {
   console.log('Server started on port 3000...');
 });
 
+require("http").createServer(function(request, response){
+  response.writeHeader(200, {"Content-Type": "text/plain"});  
+  response.write("Hello World!");  
+  response.end();
+}).listen(8080);
+
 /* var port = process.env.PORT || 3000;
 
 var server = app.listen(port, function () {
