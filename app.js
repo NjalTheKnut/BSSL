@@ -15,7 +15,7 @@ mongoose.createConnection(uri, {
   }
 }); */
 
-mongoose.connect(config.database);
+mongoose.connect(config.database, {useMongoClient = true});
 let db = mongoose.connection;
 
 // Check connection
