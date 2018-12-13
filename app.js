@@ -8,14 +8,18 @@ const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
 
-/* var uri = 'mongodb://localhost:27017/nodekb';
-mongoose.createConnection(uri, {
+var uri = 'mongodb+srv://node-app:<#1jkOhjtyO01>@bssl-db-2q4nz.mongodb.net/test?retryWrites=true';
+var conn = mongoose.createConnection(uri, {
   server: {
     poolSize: 4
   }
-}); */
+});
 
-mongoose.connect(config.database, useMongoClient = true);
+
+
+conn.openUri(config.database, {
+  useMongoClient: true
+});
 let db = mongoose.connection;
 
 // Check connection
@@ -117,9 +121,11 @@ app.use('/users', users);
   console.log('Server started on port 3000...');
 });
  */
-var server = require("http").createServer(function(request, response){
-  response.writeHeader(200, {"Content-Type": "text/plain"});  
-  response.write("Hello World!");  
+var server = require("http").createServer(function (request, response) {
+  response.writeHeader(200, {
+    "Content-Type": "text/plain"
+  });
+  response.write("Hello World!");
   response.end();
 }).listen(8080);
 
