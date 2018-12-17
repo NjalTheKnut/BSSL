@@ -8,17 +8,12 @@ const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
 
-var uri = 'mongodb+srv://node-app:<#1jkOhjtyO01>@bssl-db-2q4nz.mongodb.net/test?retryWrites=true';
+var uri = "mongodb://node-app:#1jkOhjtyO01@bssl-db-2q4nz.mongodb.net/test?retryWrites=true/bssl-app";
 var conn = mongoose.createConnection(uri, {
   useMongoClient: true,
-  server: {
-    poolSize: 4
-  }
+  poolSize: 4
 });
-
-
-
-conn.openUri(config.database, {
+conn.openUri(uri, {
   useMongoClient: true
 });
 let db = mongoose.connection;
@@ -118,24 +113,24 @@ app.use('/articles', articles);
 app.use('/users', users);
 
 // Start Server
-/* app.listen(3000, function () {
+var port = process.env.PORT || 3000;
+
+app.listen(3000, function () {
   console.log('Server started on port 3000...');
 });
- */
-var server = require("http").createServer(function (request, response) {
+
+/* var server = require("http").createServer(function (request, response) {
   response.writeHeader(200, {
     "Content-Type": "text/plain"
   });
   response.write("Hello World!");
   response.end();
-}).listen(8080);
+}).listen(port, function () {
+  console.log('Server started on port ' + port);
+}); */
 
-app.set('server', server);
 
-/* var port = process.env.PORT || 3000;
 
-var server = app.listen(port, function () {
+/* var server = app.listen(port, function () {
     console.log('Server running at http://127.0.0.1:' + port + '/');
-});
-
-app.server = server; */
+}); */
