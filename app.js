@@ -1,4 +1,7 @@
 const express = require('express');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -115,19 +118,25 @@ app.use('/users', users);
 // Start Server
 var port = process.env.PORT || 3000;
 
-app.listen(3000, function () {
+/* app.listen(port, app.get('port'), function () {
   console.log('Server started on port 3000...');
-});
+}); */
 
 /* var server = require("http").createServer(function (request, response) {
   response.writeHeader(200, {
     "Content-Type": "text/plain"
   });
-  response.write("Hello World!");
   response.end();
-}).listen(port, function () {
+}).listen(port, process.env.IP, function () {
   console.log('Server started on port ' + port);
 }); */
+
+var httpServer = http.createServer(app);
+httpServer.listen(port, function () {
+  console.log('Server started using HTTP on port ' + port);
+});
+
+var httpsServer = https.createServer();
 
 
 
