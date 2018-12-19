@@ -4,7 +4,7 @@
   "description": "Simple knowledgebase app",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "nodemon app"
   },
   "repository": {
     "type": "git",
