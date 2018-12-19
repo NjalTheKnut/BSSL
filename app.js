@@ -1,15 +1,15 @@
-const express = require('express');
-const fs = require('fs');
-const http = require('http');
-const https = require('https');
-const path = require('path');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const expressValidator = require('express-validator');
-const flash = require('connect-flash');
-const session = require('express-session');
-const passport = require('passport');
-const config = require('./config/database');
+const express = require("express");
+const fs = require("fs");
+const http = require("http");
+const https = require("https");
+const path = require("path");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const expressValidator = require("express-validator");
+const flash = require("connect-flash");
+const session = require("express-session");
+const passport = require("passport");
+const config = require("./config/database");
 
 var uri = "mongodb://node-app:#1jkOhjtyO01@bssl-db-2q4nz.mongodb.net/test?retryWrites=true/bssl-app";
 var conn = mongoose.createConnection(uri, {
@@ -22,12 +22,12 @@ conn.openUri(uri, {
 let db = mongoose.connection;
 
 // Check connection
-db.once('open', function () {
-  console.log('Connected to MongoDB');
+db.once("open", function () {
+  console.log("Connected to MongoDB");
 });
 
 // Check for DB errors
-db.on('error', function (err) {
+db.on("error", function (err) {
   console.log(err);
 });
 
@@ -35,11 +35,11 @@ db.on('error', function (err) {
 const app = express();
 
 // Bring in Models
-let Article = require('./models/article');
+let Article = require("./models/article");
 
 // Load View Engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 // Body Parser Middleware
 // parse application/x-www-form-urlencoded
@@ -50,31 +50,31 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Set Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Express Session Middleware
 app.use(session({
-  secret: 'keyboard cat',
+  secret: "keyboard cat",
   resave: true,
   saveUninitialized: true
 }));
 
 // Express Messages Middleware
-app.use(require('connect-flash')());
+app.use(require("connect-flash")());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
+  res.locals.messages = require("express-messages")(req, res);
   next();
 });
 
 // Express Validator Middleware
 app.use(expressValidator({
   errorFormatter: function (param, msg, value) {
-    var namespace = param.split('.'),
+    var namespace = param.split("."),
       root = namespace.shift(),
       formParam = root;
 
     while (namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
+      formParam += "[" + namespace.shift() + "]";
     }
     return {
       param: formParam,
@@ -85,24 +85,24 @@ app.use(expressValidator({
 }));
 
 // Passport Config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('*', function (req, res, next) {
+app.get("*", function (req, res, next) {
   res.locals.user = req.user || null;
   next();
 });
 
 // Home Route
-app.get('/', function (req, res) {
+app.get("/", function (req, res) {
   Article.find({}, function (err, articles) {
     if (err) {
       console.log(err);
     } else {
-      res.render('index', {
-        title: 'Articles',
+      res.render("index", {
+        title: "Articles",
         articles: articles
       });
     }
@@ -110,13 +110,22 @@ app.get('/', function (req, res) {
 });
 
 // Route Files
-let articles = require('./routes/articles');
-let users = require('./routes/users');
-app.use('/articles', articles);
-app.use('/users', users);
+let articles = require("./routes/articles");
+let users = require("./routes/users");
+app.use("/articles", articles);
+app.use("/users", users);
 
 // Start Server
 var port = process.env.PORT || 3000;
+
+var httpServer = http.createServer(app);
+httpServer.listen(port, process.env.IP, function () {
+  console.log("Server started using HTTP on port " + port);
+});
+
+
+
+//var httpsServer = https.createServer();
 
 /* app.listen(port, app.get('port'), function () {
   console.log('Server started on port 3000...');
@@ -130,15 +139,6 @@ var port = process.env.PORT || 3000;
 }).listen(port, process.env.IP, function () {
   console.log('Server started on port ' + port);
 }); */
-
-var httpServer = http.createServer(app);
-httpServer.listen(port, function () {
-  console.log('Server started using HTTP on port ' + port);
-});
-
-var httpsServer = https.createServer();
-
-
 
 /* var server = app.listen(port, function () {
     console.log('Server running at http://127.0.0.1:' + port + '/');
