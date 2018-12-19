@@ -110,6 +110,6 @@ app.use('/users', users);
 // Start Server
 var port = process.env.PORT || 3000;
 
-app.listen(port, "localhost", function () {
+app.listen(port, process.env.IP, function () {
   console.log('Server started on port ' + port);
 });
