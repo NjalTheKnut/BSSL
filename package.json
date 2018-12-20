@@ -1,7 +1,7 @@
 {
-  "name": "nodekb",
+  "name": "bssl-app",
   "version": "1.0.0",
-  "description": "Simple knowledgebase app",
+  "description": "Simple knowledgebase app (test/template app for bssl project)",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/NjalTheKnut/bssl-app.git"
   },
-  "author": "Brad Traversy",
+  "author": "Brad Traversy (Edited by Neal Robison for bssl)",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
