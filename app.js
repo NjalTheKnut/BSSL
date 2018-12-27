@@ -1,4 +1,7 @@
 const express = require('express');
+
+var serveStatic = require('serve-static')
+
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -89,7 +92,8 @@ app.get('*', function (req, res, next) {
 
 // Home Route
 app.get('/', function (req, res) {
-  Article.find({}, function (err, articles) {
+  // List Articles
+  /* Article.find({}, function (err, articles) {
     if (err) {
       console.log(err);
     } else {
@@ -98,7 +102,8 @@ app.get('/', function (req, res) {
         articles: articles
       });
     }
-  });
+  }); */
+  res.redirect('./curtain.html');
 });
 
 // Route Files
@@ -106,7 +111,10 @@ let articles = require('./routes/articles');
 let users = require('./routes/users');
 app.use('/articles', articles);
 app.use('/users', users);
-
+/* app.use(serveStatic('public/ftp', {
+  'curtain': 'curtain.html'
+}));
+ */
 // Start Server
 var port = process.env.PORT || 3000;
 
