@@ -1,7 +1,7 @@
 {
-  "name": "bssl-app",
+  "name": "ortho-karma",
   "version": "1.0.0",
-  "description": "Simple knowledgebase app (test/template app for bssl project)",
+  "description": "Product comparison tool for Orthodontic supplies and manufacturers.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app"
@@ -24,6 +24,6 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.1",
-    "nodemon": "*"
+    "nodemon": "^1.18.9"
   }
 }
