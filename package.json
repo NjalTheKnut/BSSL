@@ -10,8 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/NjalTheKnut/bssl.git"
   },
-  "author": "Brad Traversy (Edited by Neal Robison for bssl)",
-  "license": "ISC",
+  "author": "Neal Robison",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
