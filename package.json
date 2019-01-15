@@ -4,7 +4,7 @@
   "description": "Product comparison tool for Orthodontic supplies and manufacturers.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "node app"
   },
   "repository": {
     "type": "git",
