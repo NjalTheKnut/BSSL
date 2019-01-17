@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NjalTheKnut/bssl.git"
+    "url": "git+https://github.com/NjalTheKnut/ortho-karma.git"
   },
   "author": "Neal Robison",
   "dependencies": {
