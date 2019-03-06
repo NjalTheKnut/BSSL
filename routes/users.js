@@ -92,7 +92,7 @@ router.post('/userProfile', function (req, res) {
       if (err) {
         console.log(err);
       }
-      newUser.password = hash;
+      user.password = hash;
       user.save(function (err) {
         if (err) {
           console.log(err);
