@@ -113,6 +113,20 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/index', function (req, res) {
+  // List Articles
+  Article.find({}, function (err, articles) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('index', {
+        title: 'Articles',
+        articles: articles
+      });
+    }
+  });
+});
+
 // Route Files
 let articles = require('./routes/articles');
 let users = require('./routes/users');
