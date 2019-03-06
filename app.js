@@ -15,6 +15,11 @@ mongoose.connect(config.database, {
   useNewUrlParser: true
 });
 let db = mongoose.connection;
+db.openUri(config.database, {
+  socketTimeoutMS: 0,
+  keepAlive: true,
+  reconnectTries: 30
+});
 
 // Check connection
 db.once('open', function () {
