@@ -118,14 +118,19 @@ app.get('/index', function (req, res) {
   });
 });
 
-app.get('/userProfile', function (req, res, err, user) {
-  if (err) {
-    console.log(err);
-  } else {
-    res.render('userProfile', {
-      user: user
-    });
-  }
+app.get('/users/userProfile', function (req, res, user) {
+  User.find({
+    user
+  }, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('userProfile', {
+        title: user.name,
+        user: user
+      });
+    }
+  });
 });
 
 // Route Files
