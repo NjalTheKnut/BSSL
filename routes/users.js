@@ -7,12 +7,12 @@ const passport = require('passport');
 let User = require('../models/user');
 
 // Register Form
-router.get('/register', function(req, res){
+router.get('/register', function (req, res) {
   res.render('register');
 });
 
 // Register Proccess
-router.post('/register', function(req, res){
+router.post('/register', function (req, res) {
   const name = req.body.name;
   const email = req.body.email;
   const username = req.body.username;
@@ -28,30 +28,30 @@ router.post('/register', function(req, res){
 
   let errors = req.validationErrors();
 
-  if(errors){
+  if (errors) {
     res.render('register', {
-      errors:errors
+      errors: errors
     });
   } else {
     let newUser = new User({
-      name:name,
-      email:email,
-      username:username,
-      password:password
+      name: name,
+      email: email,
+      username: username,
+      password: password
     });
 
-    bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(newUser.password, salt, function(err, hash){
-        if(err){
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(newUser.password, salt, function (err, hash) {
+        if (err) {
           console.log(err);
         }
         newUser.password = hash;
-        newUser.save(function(err){
-          if(err){
+        newUser.save(function (err) {
+          if (err) {
             console.log(err);
             return;
           } else {
-            req.flash('success','You are now registered and can log in');
+            req.flash('success', 'You are now registered and can log in');
             res.redirect('/users/login');
           }
         });
@@ -60,22 +60,68 @@ router.post('/register', function(req, res){
   }
 });
 
+router.post('/userProfile', function (req, res) {
+  const name = req.body.name;
+  const email = req.body.email;
+  const username = req.body.username;
+  const password = req.body.password;
+  const password2 = req.body.password2;
+
+  req.checkBody('name', 'Name is required').notEmpty();
+  req.checkBody('email', 'Email is required').notEmpty();
+  req.checkBody('email', 'Email is not valid').isEmail();
+  req.checkBody('username', 'Username is required').notEmpty();
+  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
+  let errors = req.validationErrors();
+
+  if (errors) {
+    res.render('userProfile', {
+      errors: errors
+    });
+  } else {
+    user.name = name;
+    user.email = email;
+    user.username = username;
+    user.password = password;
+  }
+
+  bcrypt.genSalt(10, function (err, salt) {
+    bcrypt.hash(newUser.password, salt, function (err, hash) {
+      if (err) {
+        console.log(err);
+      }
+      newUser.password = hash;
+      newUser.save(function (err) {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          req.flash('success', 'You are now registered and can log in');
+          res.redirect('/users/login');
+        }
+      });
+    });
+  });
+});
+
 // Login Form
-router.get('/login', function(req, res){
+router.get('/login', function (req, res) {
   res.render('login');
 });
 
 // Login Process
-router.post('/login', function(req, res, next){
+router.post('/login', function (req, res, next) {
   passport.authenticate('local', {
-    successRedirect:'/',
-    failureRedirect:'/users/login',
+    successRedirect: '/',
+    failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
 });
 
 // logout
-router.get('/logout', function(req, res){
+router.get('/logout', function (req, res) {
   req.logout();
   req.flash('success', 'You are logged out');
   res.redirect('/users/login');

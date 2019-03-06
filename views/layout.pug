@@ -17,7 +17,7 @@ html
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href='/index') articles
+              a(href='/index') Articles
             if user
               li
                 a(href='/articles/add') Add Article
@@ -25,6 +25,8 @@ html
             if user
               li 
                 a(href='/users/logout') Logout
+              li
+                a(href='/users/userProfile') User Profile
             else
               li
                 a(href='/users/register') Register
