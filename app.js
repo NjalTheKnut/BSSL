@@ -36,6 +36,7 @@ const app = express();
 
 // Bring in Models
 let Article = require('./models/article');
+let User = require('./models/user');
 
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -97,22 +98,12 @@ app.get('*', function (req, res, next) {
 
 // Home Route
 app.get('/', function (req, res) {
-  // List Articles
-  /* Article.find({}, function (err, articles) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('index', {
-        title: 'Articles',
-        articles: articles
-      });
-    }
-  }); */
   res.render('curtain', {
     title: 'Welcome! Sit tight while we get things ready!'
   });
 });
 
+// Index/Articles Route
 app.get('/index', function (req, res) {
   // List Articles
   Article.find({}, function (err, articles) {
@@ -125,6 +116,16 @@ app.get('/index', function (req, res) {
       });
     }
   });
+});
+
+app.get('/userProfile', function (req, res, err, user) {
+  if (err) {
+    console.log(err);
+  } else {
+    res.render('userProfile', {
+      user: user
+    });
+  }
 });
 
 // Route Files
