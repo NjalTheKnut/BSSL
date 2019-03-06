@@ -88,12 +88,12 @@ router.post('/userProfile', function (req, res) {
   }
 
   bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(newUser.password, salt, function (err, hash) {
+    bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) {
         console.log(err);
       }
       newUser.password = hash;
-      newUser.save(function (err) {
+      user.save(function (err) {
         if (err) {
           console.log(err);
           return;
