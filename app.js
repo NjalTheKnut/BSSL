@@ -103,7 +103,10 @@ app.get('/', function (req, res) {
       });
     }
   }); */
-  res.redirect('./curtain.html');
+  res.render('curtain', {
+    title: 'Welcome! Sit tight while we get things ready!'
+  })
+  //res.redirect('./curtain.html');
 });
 
 // Route Files
