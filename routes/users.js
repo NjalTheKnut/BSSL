@@ -81,19 +81,21 @@ router.post('/userProfile', function (req, res) {
       errors: errors
     });
   } else {
-    user.name = name;
-    user.email = email;
-    user.username = username;
-    user.password = password;
+    let newUser = new User({
+      name: name,
+      email: email,
+      username: username,
+      password: password
+    });
   }
 
   bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(user.password, salt, function (err, hash) {
+    bcrypt.hash(newUser.password, salt, function (err, hash) {
       if (err) {
         console.log(err);
       }
-      user.password = hash;
-      user.save(function (err) {
+      newUser.password = hash;
+      newUser.save(function (err) {
         if (err) {
           console.log(err);
           return;
@@ -105,7 +107,7 @@ router.post('/userProfile', function (req, res) {
     });
   });
 
-
+  user = newUser;
 });
 
 // Login Form
