@@ -105,8 +105,7 @@ app.get('/', function (req, res) {
   }); */
   res.render('curtain', {
     title: 'Welcome! Sit tight while we get things ready!'
-  })
-  //res.redirect('./curtain.html');
+  });
 });
 
 // Route Files
@@ -114,10 +113,7 @@ let articles = require('./routes/articles');
 let users = require('./routes/users');
 app.use('/articles', articles);
 app.use('/users', users);
-/* app.use(serveStatic('public/ftp', {
-  'curtain': 'curtain.html'
-}));
- */
+
 // Start Server
 var port = process.env.PORT || 3000;
 
