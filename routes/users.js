@@ -81,12 +81,12 @@ router.post('/userProfile', function (req, res) {
       errors: errors
     });
   } else {
-    let newUser = new User({
+    user = {
       name: name,
       email: email,
       username: username,
       password: password
-    });
+    };
 
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(newUser.password, salt, function (err, hash) {
@@ -105,7 +105,7 @@ router.post('/userProfile', function (req, res) {
         });
       });
     });
-    user = newUser;
+
   }
 });
 
