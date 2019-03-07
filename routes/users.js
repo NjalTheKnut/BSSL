@@ -107,7 +107,6 @@ router.post('/userProfile', function (req, res) {
         });
       });
     });
-
   }
 });
 
