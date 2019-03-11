@@ -83,30 +83,33 @@ router.post('/userProfile', function (req, res) {
       errors: errors
     });
   } else {
-    user = {
-      name: name,
-      email: email,
-      username: username,
-      password: password
-    };
+    user.name = name;
+    user.email = email;
+    user.username = username;
+    user.password = password;
 
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(user.password, salt, function (err, hash) {
-        if (err) {
-          console.log(err);
-        }
-        user.password = hash;
-        user.save(function (err) {
+
+    if (user.isModified("password") || user.isNew) {
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
           if (err) {
             console.log(err);
-            return;
-          } else {
-            req.flash('success', 'You are now registered and can log in');
-            res.redirect('/users/login');
           }
+          user.password = hash;
+          user.save(function (err) {
+            if (err) {
+              console.log(err);
+              return;
+            } else {
+              req.flash('success', 'You are now registered and can log in');
+              res.redirect('/users/login');
+            }
+          });
         });
       });
-    });
+    } else {
+      return next;
+    }
   }
 });
 
