@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const User = require('mongoose').model('User');
 
 // Bring in User Model
 let User = require('../models/user');
@@ -62,7 +63,7 @@ router.post('/register', function (req, res) {
 
 
 // Update userProfile
-router.post('/userProfile', function (req, res) {
+router.post('/userProfile', function (req, res, next) {
   const name = req.body.name;
   const email = req.body.email;
   const username = req.body.username;
@@ -83,33 +84,23 @@ router.post('/userProfile', function (req, res) {
       errors: errors
     });
   } else {
+    var user = req.user;
+
     user.name = name;
     user.email = email;
     user.username = username;
     user.password = password;
 
-
-    if (user.isModified("password") || user.isNew) {
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, function (err, hash) {
-          if (err) {
-            console.log(err);
-          }
-          user.password = hash;
-          user.save(function (err) {
-            if (err) {
-              console.log(err);
-              return;
-            } else {
-              req.flash('success', 'You are now registered and can log in');
-              res.redirect('/users/login');
-            }
-          });
-        });
-      });
-    } else {
-      return next;
-    }
+    user.save(function (err) {
+      if (err) {
+        next(err)
+        console.log(err);
+        return;
+      } else {
+        req.flash('success', 'You are now registered and can log in');
+        res.redirect('/users/login');
+      }
+    });
   }
 });
 
