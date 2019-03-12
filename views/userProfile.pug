@@ -4,7 +4,8 @@ block content
   h1 User Profile
   ul
     li
-      h5 Name: #{name}
+      h5 Name:
+        h5= user.name
         a(href='/users/userEditName') Edit Name
     li
       h5 Email: #{email}
