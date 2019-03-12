@@ -60,6 +60,10 @@ router.post('/register', function (req, res) {
   }
 });
 
+// userProfile Page
+router.get('/userProfile', function (req, res) {
+  res.render('userProfile');
+});
 
 /* // Update userProfile
 router.post('/userEdit', function (req, res, next) {
