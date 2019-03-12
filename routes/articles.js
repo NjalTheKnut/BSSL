@@ -30,7 +30,7 @@ router.post('/add', function(req, res){
   } else {
     let article = new Article();
     article.title = req.body.title;
-    article.author = req.user._id;
+    article.author = req.user.username;
     article.body = req.body.body;
 
     article.save(function(err){
