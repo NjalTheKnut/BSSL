@@ -30,7 +30,7 @@ router.post('/add', function(req, res){
   } else {
     let article = new Article();
     article.title = req.body.title;
-    article.author = req.user.username;
+    article.author = req.user._id;
     article.body = req.body.body;
 
     article.save(function(err){
@@ -107,7 +107,7 @@ router.get('/:id', function(req, res){
     User.findById(article.author, function(err, user){
       res.render('article', {
         article:article,
-        author: user.name
+        author: user.username
       });
     });
   });
