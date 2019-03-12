@@ -119,7 +119,7 @@ app.get('/index', function (req, res) {
 });
 
 app.get('/users/userProfile', function (req, res, user) {
-  User.find({
+  users.find({
     user
   }, function (err) {
     if (err) {
