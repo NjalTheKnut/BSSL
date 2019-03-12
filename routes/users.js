@@ -61,8 +61,8 @@ router.post('/register', function (req, res) {
 });
 
 
-// Update userProfile
-router.post('/userProfile', function (req, res, next) {
+/* // Update userProfile
+router.post('/userEdit', function (req, res, next) {
   const name = req.body.name;
   const email = req.body.email;
   const username = req.body.username;
@@ -79,7 +79,7 @@ router.post('/userProfile', function (req, res, next) {
   let errors = req.validationErrors();
 
   if (errors) {
-    res.render('userProfile', {
+    res.render('userEdit', {
       errors: errors
     });
   } else {
@@ -88,6 +88,130 @@ router.post('/userProfile', function (req, res, next) {
     user.name = name;
     user.email = email;
     user.username = username;
+    user.password = password;
+
+    user.save(function (err) {
+      if (err) {
+        next(err)
+        console.log(err);
+        return;
+      } else {
+        req.flash('success', 'You are now registered and can log in');
+        res.redirect('/users/login');
+      }
+    });
+  }
+}); */
+
+// Update Name
+router.post('/userEditName', function (req, res, next) {
+  const name = req.body.name;
+
+  req.checkBody('name', 'Name is required').notEmpty();
+  let errors = req.validationErrors();
+
+  if (errors) {
+    res.render('userEditName', {
+      errors: errors
+    });
+  } else {
+    var user = req.user;
+
+    user.name = name;
+
+    user.save(function (err) {
+      if (err) {
+        next(err)
+        console.log(err);
+        return;
+      } else {
+        req.flash('success', 'You are now registered and can log in');
+        res.redirect('/users/login');
+      }
+    });
+  }
+});
+
+// Update Email
+router.post('/userEditEmail', function (req, res, next) {
+
+  const email = req.body.email;
+
+  req.checkBody('email', 'Email is required').notEmpty();
+  req.checkBody('email', 'Email is not valid').isEmail();
+
+  let errors = req.validationErrors();
+
+  if (errors) {
+    res.render('userEditEmail', {
+      errors: errors
+    });
+  } else {
+    var user = req.user;
+
+
+    user.email = email;
+
+    user.save(function (err) {
+      if (err) {
+        next(err)
+        console.log(err);
+        return;
+      } else {
+        req.flash('success', 'You are now registered and can log in');
+        res.redirect('/users/login');
+      }
+    });
+  }
+});
+
+// Update Username
+router.post('/userEditUsername', function (req, res, next) {
+  const username = req.body.username;
+
+  req.checkBody('username', 'Username is required').notEmpty();
+
+  let errors = req.validationErrors();
+
+  if (errors) {
+    res.render('userEditUsername', {
+      errors: errors
+    });
+  } else {
+    var user = req.user;
+
+    user.username = username;
+
+    user.save(function (err) {
+      if (err) {
+        next(err)
+        console.log(err);
+        return;
+      } else {
+        req.flash('success', 'You are now registered and can log in');
+        res.redirect('/users/login');
+      }
+    });
+  }
+});
+
+// Update Password
+router.post('/userEditPassword', function (req, res, next) {
+  const password = req.body.password;
+  const password2 = req.body.password2;
+
+  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
+  let errors = req.validationErrors();
+
+  if (errors) {
+    res.render('userEditPassword', {
+      errors: errors
+    });
+  } else {
+    var user = req.user;
+
     user.password = password;
 
     user.save(function (err) {
