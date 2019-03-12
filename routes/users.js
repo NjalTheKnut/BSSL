@@ -135,8 +135,8 @@ router.post('/userEditName', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'You are now registered and can log in');
-        res.redirect('/users/login');
+        req.flash('success', 'changes applied');
+        res.redirect('/users/userProfile');
       }
     });
   }
@@ -173,8 +173,8 @@ router.post('/userEditEmail', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'You are now registered and can log in');
-        res.redirect('/users/login');
+        req.flash('success', 'changes applied');
+        res.redirect('/users/userProfile');
       }
     });
   }
@@ -208,8 +208,8 @@ router.post('/userEditUsername', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'You are now registered and can log in');
-        res.redirect('/users/login');
+        req.flash('success', 'changes applied');
+        res.redirect('/users/userProfile');
       }
     });
   }
@@ -245,8 +245,8 @@ router.post('/userEditPassword', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'You are now registered and can log in');
-        res.redirect('/users/login');
+        req.flash('success', 'changes applied');
+        res.redirect('/users/userProfile');
       }
     });
   }
