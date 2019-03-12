@@ -121,7 +121,7 @@ app.get('/index', function (req, res) {
 app.get('/users/userProfile', function (req, res, user) {
   User.find({
     user
-  }, function (err) {
+  }, function (err, user) {
     if (err) {
       console.log(err);
     } else {
