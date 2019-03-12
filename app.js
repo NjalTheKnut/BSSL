@@ -126,6 +126,7 @@ app.get('/users/userProfile', function (req, res, user) {
       console.log(err);
     } else {
       res.render('userProfile', {
+        user: user,
         name: user.name,
         email: user.email,
         username: user.username,
