@@ -146,7 +146,7 @@ router.post('/userEditName', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'changes applied');
+        req.flash('success', 'Changes Successfully Applied');
         res.redirect('/users/userProfile');
       }
     });
@@ -184,7 +184,7 @@ router.post('/userEditEmail', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'changes applied');
+        req.flash('success', 'Changes Successfully Applied');
         res.redirect('/users/userProfile');
       }
     });
@@ -219,7 +219,7 @@ router.post('/userEditUsername', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'changes applied');
+        req.flash('success', 'Changes Successfully Applied');
         res.redirect('/users/userProfile');
       }
     });
@@ -256,7 +256,7 @@ router.post('/userEditPassword', function (req, res, next) {
         console.log(err);
         return;
       } else {
-        req.flash('success', 'changes applied');
+        req.flash('success', 'Changes Successfully Applied');
         res.redirect('/users/userProfile');
       }
     });
