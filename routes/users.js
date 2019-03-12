@@ -40,7 +40,7 @@ router.post('/register', function (req, res) {
       password: password
     });
 
-    bcrypt.genSalt(10, function (err, salt) {
+    /* bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(newUser.password, salt, function (err, hash) {
         if (err) {
           console.log(err);
@@ -56,7 +56,18 @@ router.post('/register', function (req, res) {
           }
         });
       });
+    }); */
+
+    newUser.save(function (err) {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        req.flash('success', 'You are now registered and can log in');
+        res.redirect('/users/login');
+      }
     });
+
   }
 });
 
