@@ -107,7 +107,8 @@ router.get('/:id', function(req, res){
     User.findById(article.author, function(err, user){
       res.render('article', {
         article:article,
-        author: user.username
+        author: user._id,
+        authorName: user.username
       });
     });
   });
