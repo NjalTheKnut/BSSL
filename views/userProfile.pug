@@ -6,15 +6,18 @@ block content
     li
       h5 Name:
         h5= user.name
-          #[space] a(href='/users/userEditName') Edit Name
+          space 
+          a(href='/users/userEditName') Edit Name
     li
       h5 Email: 
         h5= user.email
-          #[space] a(href='/users/userEditEmail') Edit Email
+          space 
+          a(href='/users/userEditEmail') Edit Email
     li
       h5 Username:
         h5= user.username
-          #[space] a(href='/users/userEditUsername') Edit Username
+          space
+          a(href='/users/userEditUsername') Edit Username
     li  
       h5 Password:
         a(href='/users/userEditPassword') Edit Password
