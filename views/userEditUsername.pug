@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Change Username
+  form(method='POST', action='/users/userEditUsername')
+    #form-group
+      label New Username:
+      input.form-control(name='username',type='text')
+    br
+    input.btn.btn-primary(type='submit',value='Submit')

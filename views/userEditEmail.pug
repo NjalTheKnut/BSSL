@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Update Email
+  form(method='POST', action='/users/userEditEmail')
+    #form-group
+      label New Email:
+      input.form-control(name='email', type='text')
+    br
+    input.btn.btn-primary(type='submit',value='Submit')
