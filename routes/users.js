@@ -103,6 +103,12 @@ router.post('/userEdit', function (req, res, next) {
   }
 }); */
 
+// userEditName Form
+router.get('/userEditName', function (req, res) {
+  res.render('userEditName');
+});
+
+
 // Update Name
 router.post('/userEditName', function (req, res, next) {
   const name = req.body.name;
@@ -130,6 +136,11 @@ router.post('/userEditName', function (req, res, next) {
       }
     });
   }
+});
+
+// userEditEmail Form
+router.get('/userEditEmail', function (req, res) {
+  res.render('userEditEmail');
 });
 
 // Update Email
@@ -165,6 +176,11 @@ router.post('/userEditEmail', function (req, res, next) {
   }
 });
 
+// userEditUsername Form
+router.get('/userEditUsername', function (req, res) {
+  res.render('userEditUsername');
+});
+
 // Update Username
 router.post('/userEditUsername', function (req, res, next) {
   const username = req.body.username;
@@ -193,6 +209,11 @@ router.post('/userEditUsername', function (req, res, next) {
       }
     });
   }
+});
+
+// userEditPassword Form
+router.get('/userEditPassword', function (req, res) {
+  res.render('userEditPassword');
 });
 
 // Update Password
