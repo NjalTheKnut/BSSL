@@ -126,8 +126,10 @@ app.get('/users/userProfile', function (req, res, user) {
       console.log(err);
     } else {
       res.render('userProfile', {
-        title: user.name,
-        user: user
+        user: user,
+        name: user.name,
+        email: user.email,
+        username: user.username,
       });
     }
   });
