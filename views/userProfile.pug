@@ -4,14 +4,17 @@ block content
   h1 User Profile
   ul
     li
-      h5 Name: #{name}
-        a(href='/users/userEditName') Edit Name
+      h5 Name:
+        h5= user.name
+          a(href='/users/userEditName') Edit Name
     li
-      h5 Email: #{email}
-        a(href='/users/userEditEmail') Edit Email
+      h5 Email: 
+        h5= email
+          a(href='/users/userEditEmail') Edit Email
     li
-      h5 Username: #{username}
-        a(href='/users/userEditUsername') Edit Username
+      h5 Username:
+        h5= username
+          a(href='/users/userEditUsername') Edit Username
     li  
       h5 Password:
         a(href='/users/userEditPassword') Edit Password
