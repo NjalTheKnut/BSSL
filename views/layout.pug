@@ -26,9 +26,7 @@ html
               li 
                 a(href='/users/logout') Logout
               li
-                a(href='/users/userProfile') User Profile
-              li
-                h3 #{user.username}
+                a(href='/users/userProfile') #{user.username}
             else
               li
                 a(href='/users/register') Register
