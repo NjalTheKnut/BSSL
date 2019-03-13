@@ -2,6 +2,9 @@
 
 This is an app used in the "Node.js & Express From Scratch" Youtube series by Brad Traversy.
 
+The original code has been modified and adapted for use in a different application by Neal Robison.
+Please ask before contributing to this repository or forking the code for other purposes.
+
 ## Technologies
 * Node.js
 * Express
@@ -12,7 +15,7 @@ This is an app used in the "Node.js & Express From Scratch" Youtube series by Br
 * BCrypt Hashing
 
 ### Version
-2.0.0
+1.0.0
 
 ## Usage
 
