@@ -1,7 +1,4 @@
 const express = require('express');
-
-var serveStatic = require('serve-static')
-
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,9 +8,11 @@ const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
 
+// create and configure connection to database
 mongoose.connect(config.database, {
   useNewUrlParser: true
 });
+
 let db = mongoose.connection;
 db.openUri(config.database, {
   socketTimeoutMS: 0,
